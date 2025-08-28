@@ -122,8 +122,8 @@ const getCartAmount = () =>{
 
 
     useEffect(()=>{
-        fetchUser()
-        fetchSeller()
+        // fetchUser()
+        // fetchSeller()
         fetchProducts()
     },[])
 

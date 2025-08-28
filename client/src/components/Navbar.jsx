@@ -9,21 +9,21 @@ const Navbar = () => {
     const [open, setOpen] = React.useState(false)
     const {user, setUser, setShowUserLogin, navigate, setSearchQuery, searchQuery, getCartCount, axios} = useAppContext();
 
-    const logout = async ()=>{
-      try {
-        const { data } = await axios.get('/api/user/logout')
-        if(data.success){
-          toast.success(data.message)
-          setUser(null);
-          navigate('/')
-        }else{
-          toast.error(data.message)
-        }
-      } catch (error) {
-        toast.error(error.message)
-      }
-        
+  const logout = async () => {
+  try {
+    const { data } = await axios.get('/api/user/logout', { withCredentials: true }); 
+    if (data.success) {
+      toast.success(data.message);
+      setUser(null);
+      navigate('/');
+    } else {
+      toast.error(data.message);
     }
+  } catch (error) {
+    toast.error(error.response?.data?.message || "Logout failed");
+  }
+};
+
 
     useEffect(()=>{
       if(searchQuery.length > 0){
