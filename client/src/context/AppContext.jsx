@@ -144,8 +144,20 @@ const getCartAmount = () =>{
             updateCart()
         }
     },[cartItems])
+    const logout = async () => {
+  try {
+    await axios.post('/api/user/logout'); // your backend should clear the cookie
+    setUser(null);
+    setCartItems({});
+    navigate('/login');
+    toast.success("Logged out");
+  } catch (error) {
+    toast.error(error.message);
+  }
+};
 
-    const value = {navigate, user, setUser, setIsSeller, isSeller,
+
+    const value = {navigate, user, setUser, logout,setIsSeller, isSeller,
         showUserLogin, setShowUserLogin, products, currency, addToCart, updateCartItem, removeFromCart, cartItems, searchQuery, setSearchQuery, getCartAmount, getCartCount, axios, fetchProducts, setCartItems
     }
 
